@@ -1,0 +1,115 @@
+.card {
+    margin:15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    position: relative;
+    height: max-content;
+    width:auto;
+    background: #fff;
+    border-radius: 8px; /* 5px rounded corners */
+    box-sizing: border-box;
+    align-self: center;
+    padding-bottom: 10px;
+  }
+
+.rating{
+    top :10%;
+    position: absolute;
+    z-index: 10;
+    width: 80px;
+    font-weight: 600;
+    text-align: center;
+    border-radius:0 10px 10px 0;
+    padding: 3px 10px 3px  0;
+    color:  #ffffff;
+    background-color: #654062;
+    justify-content: center;
+}
+.title-card{
+    padding: 15px;
+    background-color: #654062   ;
+    color: #ffffff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.subtitle-card {
+    font-weight: 300;
+    background-color: #a11e50;
+    color: #ffffff;
+    width: max-content;
+    padding: 5px 15px 5px 10px;
+    position: absolute;
+    right: 10px;    
+    margin-top: -18vh;
+    border-radius: 20px;
+}
+.description-card {
+    margin: 20px;
+    font-size: 14px;
+    word-spacing: 3px;
+    line-height: 1.5em;
+    overflow: hidden;
+}
+.title-card a{
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px;
+    min-width:44px;
+    max-width:44px;
+}
+figure{
+    max-height:250px;
+    overflow: hidden; /*hide bounds of image */
+    margin:0; /*reset margin of figure tag*/
+    border-radius: 8px 8px 0 0;
+}
+    .image-card{
+        display:block; /*remove inline-block spaces*/ 
+        width: 100%;
+    
+}
+ @media (max-width: 600px){
+    .description-card{
+        font-size: 14px;
+    }
+     .title-card{
+         font-size:16px;
+     }
+     .subtitle-card{
+         font-size: 12px;
+         font-weight: 400;
+         margin-top: -20%;
+     }
+ }
+ @media (min-width:600px){
+     .description-card{
+         font-size: 12px;
+     }
+     .title-card{
+         font-size: 14px;
+     }
+     .subtitle-card{
+         font-size: 14px;
+         padding:5px 10px;
+         margin-top: -30%;
+     }
+     .image-card{
+         height: 300px;
+     }
+     figure{
+         min-height: 300px;
+     }
+ }
+
+ @media (min-width: 900px){
+     .description-card{
+         font-size: 16px;
+     }
+     .title-card{
+        font-size: 20px;
+     }
+     .subtitle-card{
+         font-size: 16px;
+     }
+
+ }

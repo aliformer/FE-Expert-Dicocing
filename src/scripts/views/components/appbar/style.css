@@ -1,0 +1,123 @@
+.navbar {
+    display: grid;
+    color: #fff;
+    grid-template-columns: 3fr 6fr;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+    border-radius: 0 0 8px 8px ;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1) ;
+
+}
+.navbar .logo-wrapper{
+    display: block;
+    position:relative;
+    justify-content: flex-start;
+}
+.navbar .logo-wrapper img{
+    margin: 8px 45px;
+    width: 150px;
+}
+.navbar a{
+    padding: 15px;
+    min-height:44px;
+    min-width: 44px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+}
+.navbar a:hover{
+    color: #ff4646;
+    padding-bottom: 16px;
+    border-bottom: 4px solid #654062;
+}
+.menu-button{    
+    top: 12px;
+    border: none;
+    display: none;
+    min-width: 44px;
+    min-height: 44px;
+    color: #654062;
+    right: 30px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    
+}
+
+.sidebar {
+    width: 45%;
+    height: 100vh;
+    position: fixed;
+    z-index:-10;
+    right: -45%;
+    top:0px;
+    background-color: #fefefe;
+    z-index: 15;        
+    box-shadow:-3px 0 6px rgba(0,0,0,0.2) ;
+    transition: 0.5s;    
+}
+.active{
+    right: 0px;
+    
+}
+.sidebar-menu {
+    list-style: none;
+    margin-top:15vh;
+    margin-left: 3px;
+}
+.sidebar-menu li{
+    margin-bottom: 5px;
+    padding: 15px 0px 15px 40px;
+    
+}
+.sidebar-menu a{
+    text-decoration: none;
+    padding: 15px 0px;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    font-size: 18px;
+    color: #333;
+
+}
+.sidebar-menu li:hover{
+    
+    border-right:5px solid #654062;
+    
+}
+.sidebar-menu a:hover{
+    color: #ff4646;
+}
+.navbar ul{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+ 
+}
+.navbar li{
+    display: inline-block;
+    margin-right: 15px;
+    align-items: center;
+    padding: 20px 15px;
+}
+
+@media only screen and (max-width: 756px) {
+    .navbar ul{
+        display:none;
+    }    
+    .menu-button{
+        display: block;   
+    }
+}
+
+@media only screen and (min-width: 756px){
+    .sidebar {
+        right: -45%;
+        transform: translate(0, 0);
+      }
+    .navbar li{
+        padding: 20px 0px;
+        font-size: 14px;
+    }
+}

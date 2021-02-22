@@ -1,0 +1,46 @@
+.hero {
+    background-image: url("/images/heros/hero-image_4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;   
+    margin: 0 40px;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    height: 400px;
+    color: #fff;
+    display:flex;
+    flex-direction: column;
+    z-index: -10;
+    border-radius:10px;
+}
+.hero-title{
+    text-align: center;
+    margin-top: 150px;
+    font-size: 44px;
+    text-shadow: 0 5px 8px rgba(0,0,0,0.5);
+    
+}
+.hero-subtitle{
+    margin:10px auto;
+    font-size: 28px;
+    text-align: center;
+    text-shadow: 0 5px 8px rgba(0,0,0,0.5);
+    
+}
+
+@media only screen and (max-width: 600px) {
+    .hero{
+        height:40vh;
+        margin: 50px 10px 10px 10px;
+    }
+    .hero-title{
+        margin-top: 70px;
+        font-size: 32px;
+        padding: 0;
+    }
+    .hero-subtitle{        
+        font-size: 20px;
+        
+        margin:auto;
+    }
+}
