@@ -1,5 +1,5 @@
 import "./style.css"
-
+import CONFIG from '../../../../global/config'
 
 class RestaurantElement extends HTMLElement 
     {
@@ -12,9 +12,8 @@ class RestaurantElement extends HTMLElement
     {
         this._restaurant = restaurant;
         this.render();        
+        this.renderImage()
     }
-    
-   
     render() 
         {
             
@@ -22,9 +21,9 @@ class RestaurantElement extends HTMLElement
             `
             <article id="${this._restaurant.id}" class="card">
 
-                <figure class="image-container"> 
+                <figure class="image-container" id="restaurant-image"> 
                 
-                    <img src="${this._restaurant.pictureId}" 
+                    <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" 
                     width:"500px" class="image-card" 
                     alt ="gambar ${this._restaurant.name}">
 
@@ -51,5 +50,18 @@ class RestaurantElement extends HTMLElement
             </article>
             `
         }
+    async renderImage(){
+        try {
+           return  document.querySelector('.restaurant-image').src =  `${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}`
+        }
+        catch (err){
+          return err
+        }
+    }
+
+    async renderError(message) {
+        this.innerHTML = `<h3>${message}<h3>`
+    }
+    
     }
 customElements.define("restaurant-item", RestaurantElement)

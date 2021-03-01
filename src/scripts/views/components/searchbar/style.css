@@ -1,0 +1,32 @@
+.container-search {
+    display: grid; 
+    grid-template-columns: 82% 12%;
+    padding: 12px;    
+}
+.searchbar {
+    width: auto;
+    font-size: 18px;
+    border: none;
+    color: #ff4646;
+    padding: 0 20px;
+    background-color: #fafafa;
+    border-radius: 3px; 
+}
+
+.container-search > button {
+    border: none;
+    background-color: #654062;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 3px; 
+}
+.container-search > button :hover {
+    color:#ff4646;
+}
+@media only screen and (max-width: 800px) {
+    .container-search {
+        display: grid; 
+        grid-template-columns: 70% 20%;
+        padding: 12px;    
+    }
+}

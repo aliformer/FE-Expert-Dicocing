@@ -1,0 +1,6 @@
+const DETAIL =  {
+
+    init : {
+        id : 
+    }
+}

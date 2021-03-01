@@ -1,4 +1,4 @@
-import "../restaurantElement/index.js"
+import "../restaurant-element/restaurant-element.js"
 import "./style.css"
 
 class RestaurantContainer extends HTMLElement {
