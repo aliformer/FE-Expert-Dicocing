@@ -8,17 +8,14 @@ class ReviewFormElement extends HTMLElement {
     this._submitEvent = async (event) => {
       await event.preventDefault()
       const data = await this.getFormData()
-      data.id = id
-      console.log(data)
+      data.id = id      
       this.sendReview(data)
       const result = await getData(id)
-      if (result) {        
-        await loadData(result, 'failed to show resto', element)
-      } else {
-        console.error('terjadi kesalahan dalam memuat')
-      }
-      console.log('success')
+      await loadData(result, 'failed to show resto', element)
+      await console.log('success')
+      
     }
+
     this.render()
   }
 

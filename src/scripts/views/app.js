@@ -1,5 +1,5 @@
 import Router from '../router/router'
-import URLParser from '../utils/index'
+import URLParser from '../utils/url-parser'
 
 class App {
   constructor (appbar, content, footer) {

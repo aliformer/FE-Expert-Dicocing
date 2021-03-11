@@ -19,7 +19,7 @@ class RestaurantContainer extends HTMLElement {
     this.innerHTML = `
     <h3 class="error-message" >${message}<h3> 
     <figure>
-    <img src='images/logo/logo.png' style="display:block; margin: 10px;">
+    <img src='images/logo/logo.svg' style="display:block; margin: 10px;">
     </figure>
     `
     this.style.display = 'flex'

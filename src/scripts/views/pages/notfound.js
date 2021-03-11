@@ -6,17 +6,16 @@ class NotFound {
 
   async render () {
     this.noPage = document.createElement('div')
-    this.content()
+    this.loadData()
+    this.content.appendChild(this.noPage)
   }
 
   async loadData () {
     this.noPage.innerHTML =
         `
-        <figure>
-            <img src = {}>
-
-        </figure>
-        <h3> Page is not found <h3>
+        <figure style="display:flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 100px;">
+            <img src ='images/not-found/not-found.png' width="50%">
+        </figure>        
         `
   }
 }
