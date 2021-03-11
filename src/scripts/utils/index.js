@@ -1,37 +1,20 @@
-const {URL} = require('url')
-
-class UrlParser extends URL {
-  constructor(url){    
-    super(url);  
-    this.basePath =     
-  }
-  cleanPath(){
-    this._trimmed= this.hash.slice(1)
-    return this._trimmed
-
-  }
-  _urlSplitter(url) {
-    const urlsSplits = url.split('/');
-    return {
-      resource: urlsSplits[1] || null,
-      id: urlsSplits[2] || null,
-      verb: urlsSplits[3] || null,
-    };
-  },
-    
-  }
-  getBasePath(){
-    this.hash
+class URLParser extends URL {
+  constructor (url) {
+    super(url)
+    this.primaryHash = (this.hash === '') ? '/' : `/${this.hash.split('/')[1]}`
+    this.id = this.getId()
   }
 
-  getIdentifier(){
+  getId () {
+    if (this.hash.includes('detail')) {
+      if (this.hash.split('/')[2]) {
+        return this.hash.split('/')[2]
+      } else {
+        return undefined
+      }
+    } else {
+      return undefined
+    }
   }
-  set identifier(id){
-    return `${this.basePath}
-  }
-  
 }
-
-
-const splitted = new UrlParser('http://makanmakan.com/#/detail/image')
-console.log(splitted.getIdentifier())
+export default URLParser

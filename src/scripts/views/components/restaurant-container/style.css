@@ -1,0 +1,26 @@
+
+@media only screen and (min-width: 200px) {
+    restaurant-container {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0;
+      
+    }
+  }
+  @media only screen and (min-width: 601px) {
+    restaurant-container {      
+      display: grid;
+      grid-template-columns: fit-content(50%) fit-content(50%);
+      padding: 5px;
+    }
+  }
+@media only screen and (min-width: 1080px){
+  restaurant-container {
+    display: grid;    
+    margin: 10px 30px;
+    grid-template-columns: fit-content(33%) fit-content(33%) fit-content(33%) ;
+    box-sizing: border-box;
+    row-gap: 10px;
+    column-gap: 10px;
+  }
+}

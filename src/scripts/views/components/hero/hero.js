@@ -1,21 +1,16 @@
-import "./style.css"
+import './style.css'
 
+class Hero extends HTMLElement {
+  constructor () {
+    super()
+  }
 
-class Hero extends HTMLElement
-{
-    constructor()
-    {
-        super();
-    }
+  connectedCallback () {
+    this.render()
+  }
 
-    connectedCallback()
-    {
-        this.render();
-    }
-
-    render()
-    {
-        this.innerHTML = `
+  render () {
+    this.innerHTML = `
 
         <section class="hero">
 
@@ -29,7 +24,7 @@ class Hero extends HTMLElement
             
         </section>
         `
-    }
+  }
 }
 
-customElements.define("hero-app", Hero);
+customElements.define('hero-app', Hero)

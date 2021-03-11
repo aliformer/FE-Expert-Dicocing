@@ -41,6 +41,7 @@
     right: 10px;    
     margin-top: -18vh;
     border-radius: 20px;
+    
 }
 .description-card {
     margin: 20px;
@@ -48,6 +49,7 @@
     word-spacing: 3px;
     line-height: 1.5em;
     overflow: hidden;
+    height: 80px;
 }
 .title-card a{
     text-decoration: none;
@@ -56,10 +58,10 @@
     min-width:44px;
     max-width:44px;
 }
-figure{
+#restaurant-image{
     max-height:250px;
     overflow: hidden; /*hide bounds of image */
-    margin:0; /*reset margin of figure tag*/
+    margin:0; /*reset margin of #restaurant-image tag*/
     border-radius: 8px 8px 0 0;
 }
     .image-card{
@@ -67,6 +69,7 @@ figure{
         width: 100%;
     
 }
+
  @media (max-width: 600px){
     .description-card{
         font-size: 14px;
@@ -95,7 +98,7 @@ figure{
      .image-card{
          height: 300px;
      }
-     figure{
+     #restaurant-image{
          min-height: 300px;
      }
  }

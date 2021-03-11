@@ -2,12 +2,13 @@
     padding: 0;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+    font-size:16px;
 }
 
 
 body {
     background-color: #fdfdfd;
-    color:#656565
+    color:#656565;    
 }
 
 .skip-link{
@@ -36,10 +37,16 @@ img {
 .material-icons.md-36 { font-size: 36px; margin: 0 3px;}
 .material-icons.md-48 { font-size: 48px; margin: 0 3px;}
 
-.main-content{
-    width: 100%;  
-    margin: auto;
+main{
+    width: 100%;
+    height: max-content;    
     transition: 1s;
+    padding-bottom: 200px;   
+}
+footer-app{
+    position: fixed;
+    width: 100vw;
+    bottom: 0;    
 }
 h2{
     text-align: center;
@@ -49,10 +56,32 @@ h2{
 }
 
 footer {
-    background-color:#654062;
+    background-color:#654062;    
     color: #fefefe;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
+}
+detail-item {
+    margin: 0 10px;
+    align-items: flex-start;
+    margin-top: 5%;    
+    padding-bottom: 50px; 
+    justify-content: flex-end;   
 }
 
-
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #ff4646; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    position: absolute;
+    left: 50%;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    grid-column: 1 / 3;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

@@ -1,16 +1,22 @@
 .container-search {
     display: grid; 
-    grid-template-columns: 82% 12%;
-    padding: 12px;    
+    grid-template-columns: fit-content(20%) fit-content(20%);
+    padding: 12px;  
+    margin: 10px 30px;  
 }
-.searchbar {
-    width: auto;
+.searchbar {    
     font-size: 18px;
     border: none;
-    color: #ff4646;
-    padding: 0 20px;
-    background-color: #fafafa;
+    color: #654062;
+    padding: 0 20px;    
     border-radius: 3px; 
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.searchbar:focus {
+    width: auto;
 }
 
 .container-search > button {
@@ -26,7 +32,7 @@
 @media only screen and (max-width: 800px) {
     .container-search {
         display: grid; 
-        grid-template-columns: 70% 20%;
+        grid-template-columns: fit-content(20%) fit-content(20%);
         padding: 12px;    
     }
 }

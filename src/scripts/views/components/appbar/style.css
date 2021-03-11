@@ -1,7 +1,7 @@
 .navbar {
     display: grid;
     color: #fff;
-    grid-template-columns: 1fr 2fr 3fr;
+    grid-template-columns: fit-content(10%) fit-content(30%) fit-content(50%);
     position: fixed;
     background-color: #fff;
     top: 0;
@@ -67,6 +67,7 @@
     margin-top:15vh;
     margin-left: 3px;
 }
+
 .sidebar-menu li{
     margin-bottom: 5px;
     padding: 12px 0px 12px 10px;
@@ -110,12 +111,6 @@ nav > search-bar {
     .navbar ul{
         display:none;
     }    
-    nav > search-bar{
-        display: none;        
-    }
-    .sidebar-menu > search-bar {
-        margin-top: 150px;
-    }
     .menu-button{
         display: block;     
     }
@@ -126,7 +121,7 @@ nav > search-bar {
 
 @media only screen and (min-width: 800px){
     .navbar{
-        grid-template-columns: 1fr 2.5fr 2fr;
+        grid-template-columns: fit-content(10%) 1fr fit-content(50%);
     }
     .sidebar {
         right: -70%;

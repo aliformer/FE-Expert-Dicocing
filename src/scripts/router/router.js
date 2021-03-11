@@ -1,23 +1,19 @@
-
-const url = require('url')
 import Home from '../views/pages/home'
-// const Favorite = require('../view/page')
-// const Detail = require('../view/detail')
-// const NotFound = require('../')
+import Detail from '../views/pages/detail'
+import NotFound from '../views/pages/notfound'
+import Favorite from '../views/pages/favorite'
 
-
-const Router = (url) =>  {
-    switch (url.pathname) {
-        case '/': 
-        return new Home(url)        
-        // case '/detail':
-        // return Detail(url)        
-        // case '/favorite' :
-        // return Favorite(url)        
-        default :
-        return 'notfound'
-
-    }
+const Router = (url) => {
+  switch (url.primaryHash) {
+    case '/':
+      return new Home(url)
+    case '/detail':
+      return new Detail(url)
+    case '/favorite' :
+      return Favorite(url)
+    default:
+      return new NotFound(url)
+  }
 }
 
 export default Router
