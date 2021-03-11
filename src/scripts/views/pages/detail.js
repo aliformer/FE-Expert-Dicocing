@@ -14,13 +14,9 @@ class Detail {
   async render () {
     this.preRender()
     this.spinner()
-    this.content.append(this.restaurantElement)
-    console.log(await this._data)
+    this.content.append(this.restaurantElement)    
   }
 
-  addToFavorite () {
-    this._id = ''
-  }
 
   async afterRender () {
     await this.dataLoaded()
@@ -50,6 +46,8 @@ class Detail {
     const response = await fetch(endpoint).then(response => response.json()).catch(err => console.error(err))
     return response.restaurant
   }
+
+  
 }
 
 export default Detail

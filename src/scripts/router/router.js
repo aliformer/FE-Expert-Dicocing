@@ -10,7 +10,7 @@ const Router = (url) => {
     case '/detail':
       return new Detail(url)
     case '/favorite' :
-      return Favorite(url)
+      return new Favorite(url)
     default:
       return new NotFound(url)
   }

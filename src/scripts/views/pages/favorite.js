@@ -1,30 +1,35 @@
-
+import FavoriteRestaurantIdb from '../../../data/idb'
 
 class Favorite {
   constructor (url) {
-    this.url = url
-    this._data = this.getData()
+    this.url = url    
     this.content = document.querySelector('main')
+    this.restaurantElement = document.createElement('restaurant-container')    
   }
 
-  async render () {
-    this.hero = document.createElement('hero-app')
-    this.restaurantElement = document.createElement('restaurant-container')
-    this.content.append(this.hero)
+  async render () {    
     this.content.append(this.restaurantElement)
   }
 
-  async loadData () {
-    if (this._data) {
-      this.restaurantElement.restaurant = await this._data
+  async afterRender(){
+  this.dataLoaded()
+  }
+  
+  async dataLoaded () {
+    const data = await this.getData()
+    this.loadData(data, 'Tidak dapat memuat data', this.restaurantElement)
+  }
+  async loadData (data, error, element) {
+    if (data) {
+      element.innerHTML = ''
+      element.restaurant = await data
     } else {
-      this.restaurantElement.renderError('failed to load')
+      element.renderError(error)
     }
   }
 
-  async getData () {
-    const endpoint = API_ENDPOINT.LIST
-    const response = await fetch(endpoint).then(response => response.json()).then(data => data.restaurants)
+  async getData () {    
+    const response = await FavoriteRestaurantIdb.getAllRestaurant()    
     return response
   }
 }

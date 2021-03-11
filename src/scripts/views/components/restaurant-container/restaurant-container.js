@@ -37,8 +37,9 @@ class RestaurantContainer extends HTMLElement {
     for (const restaurant of this._restaurant) {
       const restaurantListElement = document.createElement('restaurant-item')
       restaurantListElement.restaurant = restaurant
-      this.appendChild(restaurantListElement)
+      this.appendChild(restaurantListElement)    
     }
+    console.log(this._restaurant)
   }
 }
 customElements.define('restaurant-container', RestaurantContainer)

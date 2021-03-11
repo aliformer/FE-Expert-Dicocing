@@ -47,7 +47,8 @@ class Appbar extends HTMLElement {
         <aside class="sidebar">
             <ul class="sidebar-menu">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Favorite</a></li>              
+                <li><a href="#/favorite" >Favorite</a></li>
+                <li><a href="#/category" >Category</a></li>          
                 <li><a href="#">About Us</a></li>
             </ul>
 

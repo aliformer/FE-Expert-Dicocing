@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import CONFIG from '../../../../global/config'
+import FavoriteRestaurantIdb from '../../../../data/idb'
 import '../review/review-list'
 import '../review/review-form'
 import './style.css'
@@ -9,7 +10,7 @@ class detailRestaurant extends HTMLElement {
     super()
   }
 
-  set restaurant (restaurant) {
+  set restaurant (restaurant) {    
     this._restaurant = restaurant
     this._menu = this._restaurant.menus
     this._drinks = this._menu.drinks
@@ -17,7 +18,18 @@ class detailRestaurant extends HTMLElement {
     this._category = this._restaurant.categories
     this._reviews = this._restaurant.customerReviews
     this.render()
-    this.querySelector('review-list').reviews = this._reviews
+    this.addtoFavorite({
+      id : this._restaurant.id,
+      name: this._restaurant.name,  
+      menu : this._menu,
+      category : this._category,
+      pictureId : this._restaurant.pictureId,
+      address : this._restaurant.address,
+      city: this._restaurant.city,
+      rating: this._restaurant.rating,
+      description : this._restaurant.description,
+    })
+    this.querySelector('review-list').reviews = this._reviews    
   }
 
   render () {
@@ -43,7 +55,7 @@ class detailRestaurant extends HTMLElement {
               
               <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" width:"500px" class="image-card-detail"
                   alt="gambar ${this._restaurant.name}">
-                  <button class="favorite"><i class="material-icons md-24" id="bookmark" >bookmark</i>tambahkan ke favorit </button>
+                  <button class="favorite" id="bookmarkButton"><i class="material-icons md-24" id="bookmark" >bookmark</i>tambahkan ke favorit </button>
           </figure>
 
           <h3 class="title-detail">
@@ -99,11 +111,33 @@ class detailRestaurant extends HTMLElement {
             </review-list>
               
           </article>
-
-          
         `
   }
+  renderError (message) {
+    this.innerHTML = `
+    <h3 class="error-message" >${message}<h3> 
+    <figure>
+    <img src='images/logo/logo.svg' style="display:block; margin: 10px;">
+    </figure>
+    `
+    this.style.display = 'flex'
+    this.style.flexDirection = 'column'
+    this.style.justifyContent ='center'
+    this.style.alignItems = 'center'
+  }
 
+
+  addtoFavorite(restaurant){
+    document.querySelector('#bookmarkButton').addEventListener('click',(event) => {
+    try {FavoriteRestaurantIdb.putRestaurant(restaurant)
+    console.log('success')
+    }
+    catch (err){
+      console.log('failed to save')
+    }
+    event.stopPropagation()
+    } )
+  }
  
 }
 customElements.define('detail-item', detailRestaurant)
