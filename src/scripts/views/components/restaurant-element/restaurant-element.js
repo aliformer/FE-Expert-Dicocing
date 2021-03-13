@@ -1,11 +1,13 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable accessor-pairs */
 /* eslint-disable no-useless-constructor */
 import './style.css'
 import CONFIG from '../../../../global/config'
-
+import URLParser from '../../../utils/url-parser'
 class RestaurantElement extends HTMLElement {
   constructor () {
     super()
+    this._url = new URLParser(window.location.href).primaryHash
   }
 
   set restaurant (restaurant) {
@@ -47,7 +49,6 @@ class RestaurantElement extends HTMLElement {
                 <p class="description-card" id="description">
                     ${this._restaurant.description.substr(0, 100)}
                 </p>
-
             </article>
             `
   }
@@ -62,7 +63,7 @@ class RestaurantElement extends HTMLElement {
     }
   }
 
-  async renderError (message) {  
+  async renderError (message) {
     this.innerHTML = `<h3>${message}<h3>`
   }
 }

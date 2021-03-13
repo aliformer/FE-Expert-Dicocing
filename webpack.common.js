@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const { InjectManifest } = require('workbox-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -35,6 +37,38 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/'),
         },
       ],
+      
+    }),
+    new WebpackPwaManifest({
+      name: 'Hunger',
+      short_name: 'Hunger',
+      description: 'Hunger App Resto Finder',
+      background_color: '#ff9642',
+      theme_color: '#ff9642',
+      display: 'standalone',
+      filename: 'manifest.json',
+      start_url: '/index.html',
+      crossorigin: null,
+      icons: [
+        {
+          src: path.resolve('src/public/icons/icon-192x192.png'),
+          size: [72, 96, 128, 144, 152, 192],
+        },
+        {
+          src: path.resolve('src/public/icons/icon-384x384.png'),
+          size: [256, 384],
+          purpose: 'any maskable',
+        },
+        {
+          src: path.resolve('src/public/icons/icon-512x512.png'),
+          size: '512x512',
+          purpose: 'maskable',
+        },
+      ],
+    }),
+    new InjectManifest({
+      swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
+      maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
     }),
   ],
 };

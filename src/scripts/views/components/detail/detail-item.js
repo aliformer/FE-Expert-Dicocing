@@ -10,7 +10,7 @@ class detailRestaurant extends HTMLElement {
     super()
   }
 
-  set restaurant (restaurant) {    
+  set restaurant (restaurant) {
     this._restaurant = restaurant
     this._menu = this._restaurant.menus
     this._drinks = this._menu.drinks
@@ -18,21 +18,39 @@ class detailRestaurant extends HTMLElement {
     this._category = this._restaurant.categories
     this._reviews = this._restaurant.customerReviews
     this.render()
-    this.addtoFavorite({
-      id : this._restaurant.id,
-      name: this._restaurant.name,  
-      menu : this._menu,
-      category : this._category,
-      pictureId : this._restaurant.pictureId,
-      address : this._restaurant.address,
+    this.saveData = {
+      id: this._restaurant.id,
+      name: this._restaurant.name,
+      menu: this._menu,
+      category: this._category,
+      pictureId: this._restaurant.pictureId,
+      address: this._restaurant.address,
       city: this._restaurant.city,
       rating: this._restaurant.rating,
-      description : this._restaurant.description,
-    })
-    this.querySelector('review-list').reviews = this._reviews    
+      description: this._restaurant.description,
+      reviews: this._reviews
+    }
+    this.saveOrDeleteEvent(restaurant)
+    this.addtoFavorite(this.saveData)
+    document.querySelector('review-list').reviews = this._reviews
   }
 
-  render () {
+  saveOrDeleteEvent (restaurant) {
+    if (document.querySelector('#bookmarkButton') !== null) {
+      return this.addtoFavorite(restaurant)
+    } else if (document.querySelector('#deleteButton') !== null) { return this.removetoFavorite(restaurant) }
+  }
+
+  async renderSaveButton (id) {
+    const restaurant = await FavoriteRestaurantIdb.getRestaurant(id)
+    if (restaurant !== undefined) {
+      return '<button class="favorite"id=\'#deleteButton\'><i class=\'material-icons md-24\'>bookmark</i>Hapus dari Favorit</button>'
+    } else {
+      return '<button class="favorite" id=\'#bookmarkButton\'><i class=\'material-icons md-24\' >bookmark</i>Tambahkan ke favorit</button>'
+    }
+  }
+
+  async render () {
     let foods = ''
     let drinks = ''
     let categories = ''
@@ -44,7 +62,7 @@ class detailRestaurant extends HTMLElement {
       foods += `<li>${food.name}</li>`
     })
 
-    this._category.forEach(category => {
+    this._category.forEach((category) => {
       categories += `<label class="tags" >${category.name}</label>`
     })
     this.innerHTML = `
@@ -53,13 +71,17 @@ class detailRestaurant extends HTMLElement {
 
           <figure class="image-container-detail" id="restaurant-image-detail">
               
-              <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" width:"500px" class="image-card-detail"
+              <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${
+      this._restaurant.pictureId
+    }" width:"500px" class="image-card-detail"
                   alt="gambar ${this._restaurant.name}">
-                  <button class="favorite" id="bookmarkButton"><i class="material-icons md-24" id="bookmark" >bookmark</i>tambahkan ke favorit </button>
+                  ${await this.renderSaveButton(this._restaurant.id)}
           </figure>
 
           <h3 class="title-detail">
-              <a href="#/detail/${this._restaurant.id}">${this._restaurant.name}</a>
+              <a href="#/detail/${this._restaurant.id}">${
+      this._restaurant.name
+    }</a>
           </h3>
 
           <h4 class="subtitle-detail">
@@ -103,16 +125,13 @@ class detailRestaurant extends HTMLElement {
               <section class="category">              
               <strong>Tags</strong>${categories}              
               </section>
-            </section>
-
-            <review-form>
-            </review-form>
-            <review-list>
-            </review-list>
-              
+            </section>            
+            <review-form></review-form>
+            <review-list></review-list>
           </article>
         `
   }
+
   renderError (message) {
     this.innerHTML = `
     <h3 class="error-message" >${message}<h3> 
@@ -122,22 +141,38 @@ class detailRestaurant extends HTMLElement {
     `
     this.style.display = 'flex'
     this.style.flexDirection = 'column'
-    this.style.justifyContent ='center'
+    this.style.justifyContent = 'center'
     this.style.alignItems = 'center'
   }
 
-
-  addtoFavorite(restaurant){
-    document.querySelector('#bookmarkButton').addEventListener('click',(event) => {
-    try {FavoriteRestaurantIdb.putRestaurant(restaurant)
-    console.log('success')
-    }
-    catch (err){
-      console.log('failed to save')
-    }
-    event.stopPropagation()
-    } )
+  addtoFavorite (restaurant) {
+    document
+      .querySelector('#bookmarkButton')
+      .addEventListener('click', (event) => {
+        try {
+          FavoriteRestaurantIdb.putRestaurant(restaurant)
+          this.renderSaveButton(restaurant.id)
+          console.log('success')
+        } catch (err) {
+          console.log('failed to save')
+        }
+        event.stopPropagation()
+      })
   }
- 
+
+  removeFavorite (restaurant) {
+    document
+      .querySelector('#deleteButton')
+      .addEventListener('click', (event) => {
+        try {
+          FavoriteRestaurantIdb.deleteRestaurant(restaurant.id)
+          this.renderSaveButton(id)
+          console.log('success')
+        } catch (err) {
+          console.log('failed to save')
+        }
+        event.stopPropagation()
+      })
+  }
 }
 customElements.define('detail-item', detailRestaurant)

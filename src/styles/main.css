@@ -68,7 +68,7 @@ detail-item {
     padding-bottom: 50px; 
     justify-content: flex-end;   
 }
-
+    
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #ff4646; /* Blue */

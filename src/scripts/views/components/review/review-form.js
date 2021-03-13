@@ -1,21 +1,23 @@
 import API_ENDPOINT from '../../../../global/api-endpoints'
+
 class ReviewFormElement extends HTMLElement {
   connectedCallback () {
     this.render()    
   }
 
-  set submitEvent ([element,loadData,getData,id]) {
+  set submitEvent ([element,loadData,getData,id]) { 
     this._submitEvent = async (event) => {
       await event.preventDefault()
       const data = await this.getFormData()
-      data.id = id      
-      this.sendReview(data)
-      const result = await getData(id)
-      await loadData(result, 'failed to show resto', element)
-      await console.log('success')
-      
+      data.id = id            
+      const response = await this.sendReview(data)
+      if(response !== 200){
+        this.innerHTML = 'berhasil mengirim review'
+      }
+      else {
+        console.log('berhasil')
+      }
     }
-
     this.render()
   }
 
@@ -65,7 +67,7 @@ class ReviewFormElement extends HTMLElement {
       .then((API_HELPER) => API_HELPER)
       .catch((error) => new Error(error))
     const response = await fetch(API_ENDPOINT.POST_REVIEW, helper.option(data))
-    await helper.check(response)
+    return helper.check(response)    
   }
 }
 customElements.define('review-form', ReviewFormElement)

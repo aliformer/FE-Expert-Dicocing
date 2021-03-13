@@ -11,7 +11,7 @@ class RestaurantContainer extends HTMLElement {
   set restaurant (restaurant) {
     this._restaurant = restaurant
     this._headerTitle = document.createElement('h2')
-    this._headerTitle.innerText = `Daftar Restoran`
+    this._headerTitle.innerText = 'Daftar Restoran'
     this.render()
   }
 
@@ -24,20 +24,19 @@ class RestaurantContainer extends HTMLElement {
     `
     this.style.display = 'flex'
     this.style.flexDirection = 'column'
-    this.style.justifyContent ='center'
+    this.style.justifyContent = 'center'
     this.style.alignItems = 'center'
   }
 
   render () {
-    if(this.parentNode.querySelector('h2')){      
-    }
-    else{
+    if (this.parentNode.querySelector('h2')) {
+    } else {
       this.parentNode.insertBefore(this._headerTitle, this)
     }
     for (const restaurant of this._restaurant) {
       const restaurantListElement = document.createElement('restaurant-item')
       restaurantListElement.restaurant = restaurant
-      this.appendChild(restaurantListElement)    
+      this.appendChild(restaurantListElement)
     }
     console.log(this._restaurant)
   }

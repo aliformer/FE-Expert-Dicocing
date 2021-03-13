@@ -1,5 +1,7 @@
 import API_ENDPOINT from '../../../global/api-endpoints'
+import FavoriteRestaurantIdb from '../../../data/idb'
 import '../components/detail/detail-item'
+
 
 class Detail {
   constructor (url) {
@@ -17,10 +19,9 @@ class Detail {
     this.content.append(this.restaurantElement)    
   }
 
-
   async afterRender () {
-    this.dataLoaded()
-    const element = await document.querySelector('review-form')
+    await this.dataLoaded()
+    const element = document.querySelector('review-form')
     element.submitEvent = [element, this.loadData, this.getData, this.id ]
   }
 
@@ -41,9 +42,9 @@ class Detail {
     }
   }
 
-  async getData (id) {
-    const endpoint = API_ENDPOINT.DETAIL(id)
-    const response = await fetch(endpoint).then(response => response.json()).catch(err => console.error(err))
+  async getData (id) {    
+    const response = await FavoriteRestaurantIdb.getRestaurant(id)
+    
     return response.restaurant
   }
 
