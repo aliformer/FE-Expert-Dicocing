@@ -17,22 +17,26 @@ class detailRestaurant extends HTMLElement {
     this._foods = this._menu.foods
     this._category = this._restaurant.categories
     this._reviews = this._restaurant.customerReviews
-    this.render()
-    this.addtoFavorite({
-      id : this._restaurant.id,
-      name: this._restaurant.name,  
-      menu : this._menu,
-      category : this._category,
-      pictureId : this._restaurant.pictureId,
-      address : this._restaurant.address,
-      city: this._restaurant.city,
-      rating: this._restaurant.rating,
-      description : this._restaurant.description,
-    })
-    this.querySelector('review-list').reviews = this._reviews    
+    this.render(this._restaurant.status, restaurant)    
+    this.saveOrDeleteEvent(restaurant)
+    this.querySelector('review-list').reviews = this._reviews  
+
   }
 
-  render () {
+  saveOrDeleteEvent (restaurant) {
+    if (document.querySelector('#bookmarkButton') !== null) {
+       this.addtoFavorite(restaurant)
+    } else if (document.querySelector('#deleteButton') !== null) { this.removeFavorite(restaurant) }
+  }
+  renderSaveButton (status) {    
+    if (status === false) {
+      return '<button class="favorite"id=\'deleteButton\'><i class=\'material-icons md-24\'>bookmark</i>Hapus dari Favorit</button>'
+    } else {
+      return '<button class="favorite" id=\'bookmarkButton\'><i class=\'material-icons md-24\' >bookmark</i>Tambahkan ke favorit</button>'
+    }
+  }
+
+  render (status) {
     let foods = ''
     let drinks = ''
     let categories = ''
@@ -55,7 +59,7 @@ class detailRestaurant extends HTMLElement {
               
               <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" width:"500px" class="image-card-detail"
                   alt="gambar ${this._restaurant.name}">
-                  <button class="favorite" id="bookmarkButton"><i class="material-icons md-24" id="bookmark" >bookmark</i>tambahkan ke favorit </button>
+                  ${this.renderSaveButton(status)}
           </figure>
 
           <h3 class="title-detail">
@@ -127,17 +131,34 @@ class detailRestaurant extends HTMLElement {
   }
 
 
-  addtoFavorite(restaurant){
-    document.querySelector('#bookmarkButton').addEventListener('click',(event) => {
-    try {FavoriteRestaurantIdb.putRestaurant(restaurant)
-    console.log('success')
-    }
-    catch (err){
-      console.log('failed to save')
-    }
-    event.stopPropagation()
-    } )
+  addtoFavorite (restaurant) {
+    const bookmarkButton = document.querySelector('#bookmarkButton')
+      bookmarkButton.addEventListener('click', async (event) => {
+        try {
+          FavoriteRestaurantIdb.putRestaurant(restaurant)      
+          restaurant.status = false
+          this.restaurant = restaurant    
+        
+        } catch (err) {
+          console.log('failed to save')
+        }
+        event.stopPropagation()
+      })
   }
- 
+
+  removeFavorite (restaurant) {
+    const deleteButton = document.querySelector('#deleteButton')
+      deleteButton.addEventListener('click', (event) => {
+        try {
+          FavoriteRestaurantIdb.deleteRestaurant(restaurant.id)                  
+          restaurant.status = true
+          this.restaurant = restaurant        
+          console.log('success')
+        } catch (err) {
+          console.log('failed to delete')
+        }
+        event.stopPropagation()
+      })
+  }
 }
 customElements.define('detail-item', detailRestaurant)

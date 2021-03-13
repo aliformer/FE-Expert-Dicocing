@@ -147,7 +147,7 @@ review-list{
 }
 
 
-@media only screen and (max-width:600px){
+@media only screen and (max-width:500px){
     detail-item{
         display: grid;
         grid-template-columns: 1fr;
@@ -161,32 +161,32 @@ review-list{
     .container-info{
         margin-top: 20px;
         margin: auto;
-        max-width: 350px;
+        max-width: 300px;
     }
     
     .title-detail{
         padding: 15px 5px;
-        max-width: 350px;
+        max-width: 300px;
 
     }
     .container-restaurant{
         margin: auto;
         padding: 5px;        
-        max-width: 350px;
+        max-width: 300px;
     }   
     .container-restaurant table {
-        width: 350px;
+        width: 300px;
     }
     .image-card-detail{
-        max-width: 350px
+        max-width: 300px
     }
     #restaurant-imgage-detail{
-        max-width: 350px;
+        max-width: 300px;
     }
     
 }
 
-@media only screen and (min-width:600px){
+@media only screen and (min-width:500px){
     detail-item{
         display: flex;
         flex-direction: column;

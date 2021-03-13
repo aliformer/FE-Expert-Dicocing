@@ -1,6 +1,7 @@
 import API_ENDPOINT from '../../../global/api-endpoints'
 import '../components/detail/detail-item'
 
+import FavoriteRestaurantIdb from '../../../data/idb'
 class Detail {
   constructor (url) {
     this.id = url.id    
@@ -21,7 +22,7 @@ class Detail {
   async afterRender () {
     await this.dataLoaded()
     const element = document.querySelector('review-form')
-    element.submitEvent = [element, this.loadData, this.getData, this.id ]
+    element.submitEvent = [this.restaurantElement, this.loadData, this.getData, this.id]
   }
 
   spinner () {
@@ -30,12 +31,15 @@ class Detail {
 
   async dataLoaded () {
     const data = await this.getData(this.id)
+    const status = await FavoriteRestaurantIdb.getRestaurant(this.id) === undefined ? true : false
+    data.status = status
     this.loadData(data, 'tidak dapat memuat data', this.restaurantElement)
   }
 
   async loadData (data, error, element) {
     if (data) {
       element.restaurant = await data
+      console.log(data.status)
     } else {
       element.renderError(error)
     }
