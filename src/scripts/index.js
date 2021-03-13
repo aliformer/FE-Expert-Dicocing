@@ -2,6 +2,7 @@ import 'regenerator-runtime' /* for async await transpile */
 import './views/components/appbar/appbar'
 import './views/components/footer/footer'
 import '../styles/main.css'
+import swRegister from '../scripts/utils/sw-register'
 import App from './views/app'
 
 const app = new App(
@@ -12,6 +13,7 @@ const app = new App(
 
 window.addEventListener('load', () => {
   app.init()
+  swRegister()
 })
 window.addEventListener('hashchange', () => {
   app.reset()
