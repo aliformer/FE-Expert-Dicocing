@@ -17,7 +17,6 @@ class Home {
     await this.content.append(this.searchBar)
     this.spinner()
     await this.content.append(this.restaurantElement)
-    
   }
 
   async afterRender () {
@@ -25,17 +24,17 @@ class Home {
     const searchBar = document.querySelector('search-bar')
     searchBar.clickEvent = [this.restaurantElement, this.loadData]
   }
-  spinner() {    
-      this.restaurantElement.innerHTML = '<div class="loader"></div>'    
+
+  spinner () {
+    this.restaurantElement.innerHTML = '<div class="loader"></div>'
   }
 
   async dataLoaded () {
-
     const data = await this.getData()
     this.loadData(data, 'Tidak dapat memuat data', this.restaurantElement)
   }
 
-  async loadData (data, error, element) {    
+  async loadData (data, error, element) {
     if (data) {
       element.innerHTML = ''
       element.restaurant = await data

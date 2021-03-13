@@ -2,7 +2,6 @@ import './style.css'
 import '../searchbar/searchbar'
 
 class Appbar extends HTMLElement {
-  // eslint-disable-next-line no-useless-constructor
   constructor () {
     super()
   }
@@ -11,7 +10,7 @@ class Appbar extends HTMLElement {
     await this.render()
     await this.clickEvent()
   }
-  
+
   async clickEvent () {
     const menuButtonElement = await document.querySelector('.menu-button')
     const main = await document.querySelector('main')
@@ -54,7 +53,7 @@ class Appbar extends HTMLElement {
 
         </aside>
         `
-  }  
+  }
 }
 
 customElements.define('app-bar', Appbar)

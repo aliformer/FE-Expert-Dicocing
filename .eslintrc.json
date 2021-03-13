@@ -10,6 +10,8 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "rules": {
+    "rules": {        
+        "no-useless-constructor" : 0,
+        "accessor-pairs" : 0
     }
 }
