@@ -4,11 +4,11 @@ const itActsAsFavoritedRestoModel = (favoritedResto) => {
     favoritedResto.putRestaurant({ id: 1 })
     favoritedResto.putRestaurant({ id: 2 })
 
-    expect(await favoritedResto.getResto(1))
+    expect(await favoritedResto.getRestaurant(1))
       .toEqual({ id: 1 })
-    expect(await favoritedResto.getResto(2))
+    expect(await favoritedResto.getRestaurant(2))
       .toEqual({ id: 2 })
-    expect(await favoritedResto.getResto(3))
+    expect(await favoritedResto.getRestaurant(3))
       .toEqual(undefined)
   })
 
@@ -33,7 +33,7 @@ const itActsAsFavoritedRestoModel = (favoritedResto) => {
     favoritedResto.putRestaurant({ id: 2 })
     favoritedResto.putRestaurant({ id: 3 })
 
-    await favoritedResto.deleteResto(1)
+    await favoritedResto.deleteRestaurant(1)
 
     expect(await favoritedResto.getAllRestaurant())
       .toEqual([
@@ -47,7 +47,7 @@ const itActsAsFavoritedRestoModel = (favoritedResto) => {
     favoritedResto.putRestaurant({ id: 2 })
     favoritedResto.putRestaurant({ id: 3 })
 
-    await favoritedResto.deleteResto(4)
+    await favoritedResto.deleteRestaurant(4)
 
     expect(await favoritedResto.getAllRestaurant())
       .toEqual([
