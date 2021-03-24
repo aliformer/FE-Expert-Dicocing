@@ -1,5 +1,5 @@
 import './style.css'
-
+import '../searchbar/searchbar'
 class Hero extends HTMLElement {
   constructor () {
     super()
@@ -20,8 +20,7 @@ class Hero extends HTMLElement {
 
             <p class="hero-subtitle">
                 Cari tahu dan temukan tempat makan yang unik di sekitarmu
-            </p>
-            
+            </p>            
         </section>
         `
   }

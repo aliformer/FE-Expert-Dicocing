@@ -18,6 +18,26 @@
     padding-bottom: 10px;
 
   }
+
+.toast{
+    padding: 10px;
+    right: 20px;
+    position:absolute;
+    top: 100px;
+    color: #fafafa;
+    opacity: 0.9;
+    border-radius: 8px;
+    transition: 0.5s;
+}   
+
+.success {
+    background-color:#0ee166;
+}
+.error{
+    background-color:#bf1722;
+    
+}
+
 .rating-detail{
     box-sizing: border-box;
     margin-top: 20px;

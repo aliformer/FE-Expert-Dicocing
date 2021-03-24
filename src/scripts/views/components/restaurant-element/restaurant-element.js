@@ -16,7 +16,7 @@ class RestaurantElement extends HTMLElement {
 
   render () {
     this.innerHTML = `
-            <article id="${this._restaurant.id}" class="card">
+            <article id="content/"  tabindex="0" class="card">
 
                 <figure class="image-container" id="restaurant-image"> 
                 
@@ -62,7 +62,7 @@ class RestaurantElement extends HTMLElement {
     }
   }
 
-  async renderError (message) {  
+  async renderError (message) {
     this.innerHTML = `<h3>${message}<h3>`
   }
 }

@@ -1,12 +1,12 @@
 import './style.css'
 class ReviewItem extends HTMLElement {
-    set review(review) {
-      this._review = review;
-      this.render();
-    }
-  
-    render() {
-      this.innerHTML = `
+  set review (review) {
+    this._review = review
+    this.render()
+  }
+
+  render () {
+    this.innerHTML = `
           <div class="review-card">
               <p class="review-name">
                 <i class="material-icons pr-low">person</i>${this._review.name}
@@ -14,8 +14,8 @@ class ReviewItem extends HTMLElement {
               <p class="review-body">${this._review.review}</p>
               <p class="review-date">${this._review.date}</p>
           </div>
-      `;
-    }
+      `
   }
-  
-  customElements.define('review-item', ReviewItem);
+}
+
+customElements.define('review-item', ReviewItem)

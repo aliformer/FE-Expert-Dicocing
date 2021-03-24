@@ -1,10 +1,10 @@
 import API_ENDPOINT from '../../../global/api-endpoints'
 import '../components/detail/detail-item'
 
-import FavoriteRestaurantIdb from '../../../data/idb'
 class Detail {
   constructor (url) {
-    this.id = url.id    
+    this.id = url.id
+    this.url = url
     this.content = document.querySelector('main')
   }
 
@@ -15,9 +15,8 @@ class Detail {
   async render () {
     this.preRender()
     this.spinner()
-    this.content.append(this.restaurantElement)    
+    this.content.append(this.restaurantElement)
   }
-
 
   async afterRender () {
     await this.dataLoaded()
@@ -31,8 +30,6 @@ class Detail {
 
   async dataLoaded () {
     const data = await this.getData(this.id)
-    const status = await FavoriteRestaurantIdb.getRestaurant(this.id) === undefined ? true : false
-    data.status = status
     this.loadData(data, 'tidak dapat memuat data', this.restaurantElement)
   }
 
@@ -50,8 +47,6 @@ class Detail {
     const response = await fetch(endpoint).then(response => response.json()).catch(err => console.error(err))
     return response.restaurant
   }
-
-  
 }
 
 export default Detail

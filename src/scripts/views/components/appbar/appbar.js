@@ -36,7 +36,7 @@ class Appbar extends HTMLElement {
             </div>                       
             <button class="menu-button" tabindex="0"><i class="material-icons md-36">menu</i></button>
             <ul>
-                <li><a href="#" >Home</a></li>
+                <li><a href="index.html" >Home</a></li>
                 <li><a href="#/favorite" >Favorite</a></li>
                 <li><a href="#/category" >Category</a></li>
                 <li><a href="https://github.com/aliformer" >About Us</a></li>
@@ -45,10 +45,10 @@ class Appbar extends HTMLElement {
         </nav>
         <aside class="sidebar">
             <ul class="sidebar-menu">
-                <li><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#/favorite" >Favorite</a></li>
                 <li><a href="#/category" >Category</a></li>          
-                <li><a href="#">About Us</a></li>
+                <li><a href="https://github.com/aliformer">About Us</a></li>
             </ul>
 
         </aside>

@@ -15,7 +15,8 @@ window.addEventListener('load', () => {
   app.init()
   swRegister()
 })
-window.addEventListener('hashchange', () => {
+
+window.addEventListener('hashchange', (event) => {
   app.reset()
   app.init()
 })

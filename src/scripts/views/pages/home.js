@@ -4,6 +4,7 @@ import '../components/hero/hero'
 
 class Home {
   constructor (url) {
+    this.url = url
     this._data = this.getData()
     this.content = document.querySelector('main')
     this.hero = document.createElement('hero-app')
