@@ -2,6 +2,7 @@
 /* eslint-disable no-useless-constructor */
 import './style.css'
 import CONFIG from '../../../../global/config'
+import 'lazysizes';
 
 class RestaurantElement extends HTMLElement {
   constructor () {
@@ -20,11 +21,9 @@ class RestaurantElement extends HTMLElement {
 
                 <figure class="image-container" id="restaurant-image"> 
                 
-                    <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${
+                    <img class="lazyload image-card" data-src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${
       this._restaurant.pictureId
-    }" 
-                    width:"500px" class="image-card" 
-                    alt ="gambar ${this._restaurant.name}">
+    }" alt ="gambar ${this._restaurant.name}" width="100%" height="100%">
 
                 </figure>
 

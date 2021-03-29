@@ -65,7 +65,7 @@
     margin-right: 10px;
 }
 .subtitle-detail {
-    font-weight: 300;  
+    font-weight: 320;  
     padding: 10px;  
     color: #654062;
     width: auto;        
@@ -181,27 +181,27 @@ review-list{
     .container-info{
         margin-top: 20px;
         margin: auto;
-        max-width: 300px;
+        max-width: 320px;
     }
     
     .title-detail{
         padding: 15px 5px;
-        max-width: 300px;
+        max-width: 320px;
 
     }
     .container-restaurant{
         margin: auto;
         padding: 5px;        
-        max-width: 300px;
+        max-width: 320px;
     }   
     .container-restaurant table {
-        width: 300px;
+        width: 320px;
     }
     .image-card-detail{
-        max-width: 300px
+        max-width: 320px
     }
     #restaurant-imgage-detail{
-        max-width: 300px;
+        max-width: 320px;
     }
     
 }

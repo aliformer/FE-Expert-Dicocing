@@ -14,7 +14,7 @@ const FavoriteRestaurantIdb = {
     try {
       return (await dbPromise).get(OBJECT_STORE_NAME, id)
     } catch (err) {
-      console.log(err)
+      return new Error(err)
     }
   },
   async getAllRestaurant () {

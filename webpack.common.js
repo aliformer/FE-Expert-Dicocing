@@ -1,7 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { InjectManifest } = require('workbox-webpack-plugin')
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ImageminMozjpeg = require('imagemin-mozjpeg')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path')
 
 module.exports = {
@@ -10,6 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  
   module: {
     rules: [
       {
@@ -34,9 +40,16 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, 'src/public/'),
-          to: path.resolve(__dirname, 'dist/')
-        }
+          to: path.resolve(__dirname, 'dist/'),
+          globOptions: {
+            ignore: ['**/images/heros'], // CopyWebpackPlugin mengabaikan berkas yang berada di dalam folder images
+          },
+        },
       ]
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
     new WebpackPwaManifest({
       name: 'Hunger App',
@@ -68,7 +81,20 @@ module.exports = {
     new InjectManifest({
       swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
       maximumFileSizeToCacheInBytes: 10 * 1024 * 1024
-    })
-  ]
-
+    }),
+    new ImageminWebpackPlugin({
+      plugins: [
+        ImageminMozjpeg({
+          quality: 50,
+          progressive: true,
+        }),
+      ],
+    }),
+    new BundleAnalyzerPlugin(),  
+  ],
+   optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
 }

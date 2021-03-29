@@ -4,6 +4,7 @@ import '../review/review-list'
 import '../review/review-form'
 import '../like-button/like-button'
 import './style.css'
+import 'lazysizes';
 
 class detailRestaurant extends HTMLElement {
   constructor () {
@@ -21,13 +22,6 @@ class detailRestaurant extends HTMLElement {
     this.querySelector('like-button').render = restaurant
     this.querySelector('review-list').reviews = this._reviews
   }
-
-  saveOrDeleteEvent (restaurant) {
-    if (document.querySelector('#bookmarkButton') !== null) {
-      this.addtoFavorite(restaurant)
-    } else if (document.querySelector('#deleteButton') !== null) { this.removeFavorite(restaurant) }
-  }
-
   render () {
     let foods = ''
     let drinks = ''
@@ -49,7 +43,7 @@ class detailRestaurant extends HTMLElement {
 
           <figure class="image-container-detail" id="restaurant-image-detail">
               
-              <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" width:"500px" class="image-card-detail"
+              <img class="lazyload image-card-detail" data-src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" width:"500px"
                   alt="gambar ${this._restaurant.name}">
                   <like-button></like-button>
           </figure>

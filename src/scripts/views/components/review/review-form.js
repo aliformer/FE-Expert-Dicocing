@@ -7,15 +7,18 @@ class ReviewFormElement extends HTMLElement {
   set submitEvent ([element, loadData, getData, id]) {
     this._submitEvent = async (event) => {
       event.preventDefault()
-      const data = await this.getFormData()
-      data.id = id
-      await this.sendReview(data)
-      this._data = await getData(data.id)
-      element.render()
-      loadData(this._data, 'gagal muat data', element)
-      await console.log('success')
+      this.id = id   
+      this.element = element
+      this.loadData = loadData
+      this.getData = getData
+      this.renderPage = render
+      const data = await this.getFormData()      
+      data.id = this.id
+      await this.sendReview(data)       
+      await console.log('success')  
+      document.querySelector('item-list').render()
+      
     }
-
     this.render()
   }
 
@@ -68,6 +71,9 @@ class ReviewFormElement extends HTMLElement {
       .catch((error) => new Error(error))
     const response = await fetch(API_ENDPOINT.POST_REVIEW, helper.option(data))
     await helper.check(response)
+    this.submitEvent = [this.element, this.id]
+    const dataRenew = await this.getData(this.id)     
+    this.loadData(await dataRenew, 'gagal memuat data', this.element )    
   }
 }
 customElements.define('review-form', ReviewFormElement)

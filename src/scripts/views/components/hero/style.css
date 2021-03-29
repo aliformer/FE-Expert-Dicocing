@@ -1,5 +1,5 @@
 .hero {
-    background-image: url("/images/heros/hero-image_4.jpg");
+    background-image: url("/images/heros/hero-image_4-large.jpg");
     background-repeat: no-repeat;
     background-size:cover;
     background-position:center;    
@@ -31,6 +31,7 @@
 
 @media only screen and (max-width: 600px) {
     .hero{
+        background-image: url("/images/heros/hero-image_4-small.jpg");
         height:40vh;
         margin: 50px 0px;
     }

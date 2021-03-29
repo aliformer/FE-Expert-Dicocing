@@ -32,7 +32,7 @@ class Appbar extends HTMLElement {
         `
         <nav class="navbar">        
             <div class="logo-wrapper">
-                <img src="/images/logo/logo.svg" alt="">
+                <img src="/images/logo/logo.svg" alt="logo" width="100%" heigt="100%">
             </div>                       
             <button class="menu-button" tabindex="0"><i class="material-icons md-36">menu</i></button>
             <ul>

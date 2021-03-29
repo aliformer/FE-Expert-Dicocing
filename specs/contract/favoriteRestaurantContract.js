@@ -13,7 +13,7 @@ const itActsAsFavoritedRestoModel = (favoritedResto) => {
   })
 
   it('should refuse restaurant with inaproppiate property', async () => {
-    favoritedResto.putRestaurant({ aProperty: 'property' })
+    favoritedResto.putRestaurant({ prop : 'prop'})
     expect(await favoritedResto.getAllRestaurant()).toEqual([])
   })
 

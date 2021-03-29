@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import '../src/scripts/views/components/like-button/like-button'
 import FavoriteRestaurantIdb from '../src/data/idb'
 
@@ -116,7 +117,7 @@ describe('test render dislike button', () => {
       await expect(await document.querySelector('#bookmarkButton')).toBeTruthy()
       done()
     })
-  })  
+  })
   it('should display toast succes after dispatch click event from delete button', (done) => {
     FavoriteRestaurantIdb.putRestaurant({ id: '2' })
     const like = document.querySelector('like-button')
@@ -129,5 +130,5 @@ describe('test render dislike button', () => {
       expect(await FavoriteRestaurantIdb.getAllRestaurant()).not.toEqual({ id: '2' })
       done()
     })
-  }) 
+  })
 })
