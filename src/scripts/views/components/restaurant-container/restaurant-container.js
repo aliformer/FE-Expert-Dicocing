@@ -7,7 +7,7 @@ class RestaurantContainer extends HTMLElement {
     super()
   }
 
-  set restaurant (restaurant) {
+  set restaurant (restaurant) { 
     this._restaurant = restaurant
     this._headerTitle = document.createElement('h2')
     this._headerTitle.innerText = 'Daftar Restoran'
@@ -35,6 +35,7 @@ class RestaurantContainer extends HTMLElement {
     }
     for (const restaurant of this._restaurant) {
       const restaurantListElement = document.createElement('restaurant-item')
+      restaurant.iteration = this._restaurant.indexOf(restaurant)
       restaurantListElement.restaurant = restaurant
       this.appendChild(restaurantListElement)
     }

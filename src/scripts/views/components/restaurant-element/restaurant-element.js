@@ -10,14 +10,14 @@ class RestaurantElement extends HTMLElement {
   }
 
   set restaurant (restaurant) {
-    this._restaurant = restaurant
+    this._restaurant = restaurant    
     this.render()
     this.renderImage()
   }
 
   render () {
     this.innerHTML = `
-            <article id="content/"  tabindex="0" class="card">
+            <article id="content#${this._restaurant.iteration}/"  tabindex="0" class="card">
 
                 <figure class="image-container" id="restaurant-image"> 
                 

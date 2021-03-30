@@ -7,6 +7,5 @@ describe('Favorite Resto Idb Contract Test Implementation', () => {
       await FavoriteRestaurantIdb.deleteRestaurant(restaurant.id);
     });
   });
-
   itActsAsFavoritedRestoModel(FavoriteRestaurantIdb);
 });

@@ -12,11 +12,6 @@ const itActsAsFavoritedRestoModel = (favoritedResto) => {
       .toEqual(undefined)
   })
 
-  it('should refuse restaurant with inaproppiate property', async () => {
-    favoritedResto.putRestaurant({ prop : 'prop'})
-    expect(await favoritedResto.getAllRestaurant()).toEqual([])
-  })
-
   it('can return all of the restaurants that have been added', async () => {
     favoritedResto.putRestaurant({ id: 1 })
     favoritedResto.putRestaurant({ id: 2 })
