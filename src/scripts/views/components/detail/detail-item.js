@@ -4,7 +4,7 @@ import '../review/review-list'
 import '../review/review-form'
 import '../like-button/like-button'
 import './style.css'
-import 'lazysizes';
+import 'lazysizes'
 
 class detailRestaurant extends HTMLElement {
   constructor () {
@@ -22,6 +22,7 @@ class detailRestaurant extends HTMLElement {
     this.querySelector('like-button').render = restaurant
     this.querySelector('review-list').reviews = this._reviews
   }
+
   render () {
     let foods = ''
     let drinks = ''

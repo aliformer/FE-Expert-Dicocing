@@ -7,7 +7,7 @@ class RestaurantContainer extends HTMLElement {
     super()
   }
 
-  set restaurant (restaurant) { 
+  set restaurant (restaurant) {
     this._restaurant = restaurant
     this._headerTitle = document.createElement('h2')
     this._headerTitle.innerText = 'Daftar Restoran'

@@ -2,7 +2,7 @@
 /* eslint-disable no-useless-constructor */
 import './style.css'
 import CONFIG from '../../../../global/config'
-import 'lazysizes';
+import 'lazysizes'
 
 class RestaurantElement extends HTMLElement {
   constructor () {
@@ -10,7 +10,7 @@ class RestaurantElement extends HTMLElement {
   }
 
   set restaurant (restaurant) {
-    this._restaurant = restaurant    
+    this._restaurant = restaurant
     this.render()
     this.renderImage()
   }
