@@ -25,15 +25,15 @@ describe('test render like button', () => {
       expect(await like.querySelector('#deleteButton')).toBeFalsy()
       done()
     })
-  }, 100)
+  })
   it('should draw bookmark button', (done) => {
     const like = document.querySelector('like-button')
     like.render = { id: '2' }
     like.addEventListener('like-button:rendered', async () => {
-      expect(await like.firstChild.id).toEqual('bookmarkButton')
+      expect( await like.firstChild.id).toEqual('bookmarkButton')
       done()
     })
-  }, 100)
+  })
   it('should draw dislike button after dispatch click event from bookmark button', (done) => {
     const like = document.querySelector('like-button')
     like.render = { id: '2' }
@@ -95,7 +95,7 @@ describe('test render dislike button', () => {
       expect(await like.querySelector('#bookmarkButton')).toBeFalsy()
       done()
     })
-  }, 100)
+  })
   it('should not draw bookmark button', (done) => {
     FavoriteRestaurantIdb.putRestaurant({ id: '1' })
     const like = document.querySelector('like-button')
@@ -103,7 +103,7 @@ describe('test render dislike button', () => {
     like.addEventListener('like-button:rendered', async () => {
       expect(await like.firstChild.id).toEqual('deleteButton')
       done()
-    }, 100)
+    })
   })
   it('should draw bookmark button after dispatch click event from bookmark button', (done) => {
     FavoriteRestaurantIdb.putRestaurant({ id: '2' })
