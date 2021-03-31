@@ -13,15 +13,22 @@ Before(({ I }) => {
     I.amOnPage('/#');
   });
   
-Scenario('Do Search', ({ I }) => {    
-    I.seeElement('search-bar');
+Scenario('Do Search then write review', ({ I }) => {    
+    I.seeElement('search-bar')
     I.click(locate('.searchbar'))
     I.type('bali')
     I.click(locate('search-bar button'))
     I.seeElement('restaurant-item')
-    I.click(locate('restaurant-item a').at(1));
-    I.seeElement('.category')    
+    I.click(locate('restaurant-item a').at(1))
+    I.seeElement('review-form')    
+    I.click('#inputReview')
+    I.type('makanannya enak')    
+    I.click('#inputName')
+    I.type('Ali')
+    I.click('#submitReview')
+    I.refreshPage()
 });
+
  
 Scenario('Add to Favorite then remove it', async ({ I }) => {
     I.amOnPage('/#');

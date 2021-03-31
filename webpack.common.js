@@ -69,7 +69,7 @@ module.exports = {
     new ImageminWebpackPlugin({
       plugins: [
         ImageminMozjpeg({
-          quality: 40,
+          quality: 50,
           progressive: true,
         }),
       ],
@@ -92,29 +92,27 @@ module.exports = {
     ],
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin({
-      parallel: 2,      
-    })],
     splitChunks: {
-      chunks: "all",
-      minSize: 30000,
+      chunks: 'all',
+      minSize: 20000,
       maxSize: 70000,
       minChunks: 1,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
-      automaticNameDelimiter: "~",
+      automaticNameDelimiter: '~',
       enforceSizeThreshold: 50000,
       cacheGroups: {
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10,
+          priority: -10
         },
         default: {
           minChunks: 2,
           priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
+          reuseExistingChunk: true
+        }
+      }
     },
-  },
+    minimizer: [new CssMinimizerPlugin()],
+  }
 };

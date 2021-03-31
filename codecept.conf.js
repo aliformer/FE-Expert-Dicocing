@@ -9,7 +9,7 @@ exports.config = {
   output: '',
   helpers: {
     Puppeteer: {
-      url: 'http://localhost:8080',
+      url: 'http://localhost:8001',
       show: true,
       windowSize: '1200x900'
     }
@@ -29,7 +29,7 @@ exports.config = {
       enabled: true
     },
     screenshotOnFail: {
-      enabled: false
+      enabled: true
     }
   }
 }
