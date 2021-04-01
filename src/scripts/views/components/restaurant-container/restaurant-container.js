@@ -1,5 +1,4 @@
-/* eslint-disable accessor-pairs */
-/* eslint-disable no-useless-constructor */
+
 import '../restaurant-element/restaurant-element.js'
 import './style.css'
 
@@ -11,7 +10,7 @@ class RestaurantContainer extends HTMLElement {
   set restaurant (restaurant) {
     this._restaurant = restaurant
     this._headerTitle = document.createElement('h2')
-    this._headerTitle.innerText = `Daftar Restoran`
+    this._headerTitle.innerText = 'Daftar Restoran'
     this.render()
   }
 
@@ -24,22 +23,22 @@ class RestaurantContainer extends HTMLElement {
     `
     this.style.display = 'flex'
     this.style.flexDirection = 'column'
-    this.style.justifyContent ='center'
+    this.style.justifyContent = 'center'
     this.style.alignItems = 'center'
   }
 
   render () {
-    if(this.parentNode.querySelector('h2')){      
-    }
-    else{
+    // eslint-disable-next-line no-empty
+    if (this.parentNode.querySelector('h2')) {
+    } else {
       this.parentNode.insertBefore(this._headerTitle, this)
     }
     for (const restaurant of this._restaurant) {
       const restaurantListElement = document.createElement('restaurant-item')
+      restaurant.iteration = this._restaurant.indexOf(restaurant)
       restaurantListElement.restaurant = restaurant
-      this.appendChild(restaurantListElement)    
+      this.appendChild(restaurantListElement)
     }
-    console.log(this._restaurant)
   }
 }
 customElements.define('restaurant-container', RestaurantContainer)

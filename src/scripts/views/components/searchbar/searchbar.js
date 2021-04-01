@@ -12,10 +12,10 @@ class Searchbar extends HTMLElement {
   }
 
   set clickEvent ([element, loadData]) {
-    this._clickEvent = async () => {      
+    this._clickEvent = async () => {
       this._query = this.querySelector('.searchbar').value
-      const result = await this.searchRestaurant(this._query)      
-      if (result) {        
+      const result = await this.searchRestaurant(this._query)
+      if (result) {
         await loadData(result, 'failed to show resto', element)
       } else {
         this.notFound(element, this._query)
@@ -28,6 +28,7 @@ class Searchbar extends HTMLElement {
   notFound (element, query) {
     element.innerHTML = `<p>tidak ada restoran dengan kata kunci <b>${query}</b></p>`
   }
+
   render () {
     this.innerHTML = `        
         <label class="container-search">        

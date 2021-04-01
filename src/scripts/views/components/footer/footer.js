@@ -12,7 +12,7 @@ class FooterApp extends HTMLElement {
     this.innerHTML =
         `
         <footer>
-        <p>Copyright © 2020 - Hunger Apps</p>
+        <p> Copyright © 2020 - Hunger Apps</p>        
         </footer> 
         `
   }

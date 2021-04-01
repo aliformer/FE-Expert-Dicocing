@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Workbox } from 'workbox-window';
+import { Workbox } from 'workbox-window'
 
 const swRegister = async () => {
   if ('serviceWorker' in navigator) {
-    const workbox = new Workbox('../sw.js');
-    workbox.register();
+    const workbox = new Workbox('../sw.js')
+    workbox.register()
   }
-};
+}
 
-export default swRegister;
+export default swRegister

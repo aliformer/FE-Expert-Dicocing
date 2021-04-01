@@ -16,7 +16,7 @@
 }
 
 .searchbar:focus {
-    width: auto;
+    width: 100%;
 }
 
 .container-search > button {
@@ -25,14 +25,22 @@
     color: #fff;
     padding: 5px 8px;
     border-radius: 3px; 
+    min-width:44px;
+    min-height: 44px;
 }
 .container-search > button :hover {
     color:#ff4646;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 500px) {
+    .container-search {
+        display: flex;        
+        padding: 12px;    
+    }
+}
+@media only screen and (max-width: 900px) {
     .container-search {
         display: grid; 
-        grid-template-columns: fit-content(20%) fit-content(20%);
+        grid-template-columns: 2fr 1fr;
         padding: 12px;    
     }
 }

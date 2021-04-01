@@ -1,42 +1,29 @@
 /* eslint-disable no-useless-constructor */
 import CONFIG from '../../../../global/config'
-import FavoriteRestaurantIdb from '../../../../data/idb'
 import '../review/review-list'
 import '../review/review-form'
+import '../like-button/like-button'
 import './style.css'
+import 'lazysizes'
 
 class detailRestaurant extends HTMLElement {
   constructor () {
     super()
   }
 
-  set restaurant (restaurant) {    
+  set restaurant (restaurant) {
     this._restaurant = restaurant
     this._menu = this._restaurant.menus
     this._drinks = this._menu.drinks
     this._foods = this._menu.foods
     this._category = this._restaurant.categories
     this._reviews = this._restaurant.customerReviews
-    this.render(this._restaurant.status, restaurant)    
-    this.saveOrDeleteEvent(restaurant)
-    this.querySelector('review-list').reviews = this._reviews  
-
+    this.render()
+    this.querySelector('like-button').render = restaurant
+    this.querySelector('review-list').reviews = this._reviews
   }
 
-  saveOrDeleteEvent (restaurant) {
-    if (document.querySelector('#bookmarkButton') !== null) {
-       this.addtoFavorite(restaurant)
-    } else if (document.querySelector('#deleteButton') !== null) { this.removeFavorite(restaurant) }
-  }
-  renderSaveButton (status) {    
-    if (status === false) {
-      return '<button class="favorite"id=\'deleteButton\'><i class=\'material-icons md-24\'>bookmark</i>Hapus dari Favorit</button>'
-    } else {
-      return '<button class="favorite" id=\'bookmarkButton\'><i class=\'material-icons md-24\' >bookmark</i>Tambahkan ke favorit</button>'
-    }
-  }
-
-  render (status) {
+  render () {
     let foods = ''
     let drinks = ''
     let categories = ''
@@ -53,17 +40,17 @@ class detailRestaurant extends HTMLElement {
     })
     this.innerHTML = `
         
-          <article id="${this._restaurant.id}" class="container-restaurant">
+          <article id="konten/" class="container-restaurant">
 
           <figure class="image-container-detail" id="restaurant-image-detail">
               
-              <img src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" width:"500px" class="image-card-detail"
+              <img class="lazyload image-card-detail" data-src="${CONFIG.BASE_IMAGE_URL_MEDIUM}${this._restaurant.pictureId}" width:"500px"
                   alt="gambar ${this._restaurant.name}">
-                  ${this.renderSaveButton(status)}
+                  <like-button></like-button>
           </figure>
 
           <h3 class="title-detail">
-              <a href="#/detail/${this._restaurant.id}">${this._restaurant.name}</a>
+              <a href="#/detail/${this._restaurant.id}" name="#konten">${this._restaurant.name}</a>
           </h3>
 
           <h4 class="subtitle-detail">
@@ -117,6 +104,7 @@ class detailRestaurant extends HTMLElement {
           </article>
         `
   }
+
   renderError (message) {
     this.innerHTML = `
     <h3 class="error-message" >${message}<h3> 
@@ -126,39 +114,8 @@ class detailRestaurant extends HTMLElement {
     `
     this.style.display = 'flex'
     this.style.flexDirection = 'column'
-    this.style.justifyContent ='center'
+    this.style.justifyContent = 'center'
     this.style.alignItems = 'center'
-  }
-
-
-  addtoFavorite (restaurant) {
-    const bookmarkButton = document.querySelector('#bookmarkButton')
-      bookmarkButton.addEventListener('click', async (event) => {
-        try {
-          FavoriteRestaurantIdb.putRestaurant(restaurant)      
-          restaurant.status = false
-          this.restaurant = restaurant    
-        
-        } catch (err) {
-          console.log('failed to save')
-        }
-        event.stopPropagation()
-      })
-  }
-
-  removeFavorite (restaurant) {
-    const deleteButton = document.querySelector('#deleteButton')
-      deleteButton.addEventListener('click', (event) => {
-        try {
-          FavoriteRestaurantIdb.deleteRestaurant(restaurant.id)                  
-          restaurant.status = true
-          this.restaurant = restaurant        
-          console.log('success')
-        } catch (err) {
-          console.log('failed to delete')
-        }
-        event.stopPropagation()
-      })
   }
 }
 customElements.define('detail-item', detailRestaurant)

@@ -8,21 +8,21 @@ class App {
     this.footer = footer
   }
 
-  async renderAppbar () {
-    await document.body.append(this.appbar)
-    await document.body.append(this.content)
-    await document.body.append(this.footer)
+  renderAppbar () {
+    document.body.append(this.appbar)
+    document.body.append(this.content)
+    document.body.append(this.footer)
   }
 
   async renderPage () {
-    const url = await new URLParser(window.location.href)
+    const url = new URLParser(window.location.href)
     const page = Router(url)
-    await page.render()  
-    await page.afterRender()   
+    await page.render()
+    await page.afterRender()
   }
 
   async init () {
-    await this.renderAppbar()
+    this.renderAppbar()
     await this.renderPage()
   }
 

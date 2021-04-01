@@ -18,6 +18,26 @@
     padding-bottom: 10px;
 
   }
+
+.toast{
+    padding: 10px;
+    right: 20px;
+    position:absolute;
+    top: 100px;
+    color: #fafafa;
+    opacity: 0.9;
+    border-radius: 8px;
+    transition: 0.5s;
+}   
+
+.success {
+    background-color:#0ee166;
+}
+.error{
+    background-color:#bf1722;
+    
+}
+
 .rating-detail{
     box-sizing: border-box;
     margin-top: 20px;
@@ -45,7 +65,7 @@
     margin-right: 10px;
 }
 .subtitle-detail {
-    font-weight: 300;  
+    font-weight: 320;  
     padding: 10px;  
     color: #654062;
     width: auto;        
@@ -161,27 +181,27 @@ review-list{
     .container-info{
         margin-top: 20px;
         margin: auto;
-        max-width: 300px;
+        max-width: 320px;
     }
     
     .title-detail{
         padding: 15px 5px;
-        max-width: 300px;
+        max-width: 320px;
 
     }
     .container-restaurant{
         margin: auto;
         padding: 5px;        
-        max-width: 300px;
+        max-width: 320px;
     }   
     .container-restaurant table {
-        width: 300px;
+        width: 320px;
     }
     .image-card-detail{
-        max-width: 300px
+        max-width: 320px
     }
     #restaurant-imgage-detail{
-        max-width: 300px;
+        max-width: 320px;
     }
     
 }

@@ -1,25 +1,27 @@
-import API_ENDPOINT from "../../../../global/api-endpoints";
+import API_ENDPOINT from '../../../../global/api-endpoints'
 class ReviewFormElement extends HTMLElement {
-  connectedCallback() {
-    this.render();
+  connectedCallback () {
+    this.render()
   }
 
-  set submitEvent([element, loadData, getData, id]) {
+  set submitEvent ([element, loadData, getData, id]) {
     this._submitEvent = async (event) => {
-      event.preventDefault();
-      const data = await this.getFormData();
-      data.id = id;
-      await this.sendReview(data);
-      this._data = await getData(data.id);
-      element.render();
-      loadData(this._data, "gagal muat data", element);
-      await console.log("success");
-    };
-
-    this.render();
+      event.preventDefault()
+      this.id = id
+      this.element = element
+      this.loadData = loadData
+      this.getData = getData
+      this.renderPage = render
+      const data = await this.getFormData()
+      data.id = this.id
+      await this.sendReview(data)
+      await console.log('success')
+      document.querySelector('item-list').render()
+    }
+    this.render()
   }
 
-  render() {
+  render () {
     this.innerHTML = `
       <h3 class="review-header">Reviews</h3>
       <form class="review-form" id="reviewForm">
@@ -46,27 +48,31 @@ class ReviewFormElement extends HTMLElement {
 
         </div>
       </form>
-    `;
-    this.querySelector("form").addEventListener("submit", this._submitEvent);
+    `
+    this.querySelector('form').addEventListener('submit', this._submitEvent)
   }
 
-  getFormData() {
-    const form = document.querySelector("#reviewForm");
-    const review = form.elements.inputReview.value;
-    const name = form.elements.inputName.value;
+  getFormData () {
+    const form = document.querySelector('#reviewForm')
+    const review = form.elements.inputReview.value
+    const name = form.elements.inputName.value
     const data = {
       review: review,
-      name: name,
-    };
-    return data;
+      name: name
+    }
+    return data
   }
-  async sendReview(data) {
-    const helper = await import("../../../../global/api.helper")
+
+  async sendReview (data) {
+    const helper = await import('../../../../global/api.helper')
       .then((module) => module.default)
       .then((API_HELPER) => API_HELPER)
-      .catch((error) => new Error(error));
-    const response = await fetch(API_ENDPOINT.POST_REVIEW, helper.option(data));
-    await helper.check(response);
+      .catch((error) => new Error(error))
+    const response = await fetch(API_ENDPOINT.POST_REVIEW, helper.option(data))
+    await helper.check(response)
+    this.submitEvent = [this.element, this.id]
+    const dataRenew = await this.getData(this.id)
+    this.loadData(await dataRenew, 'gagal memuat data', this.element)
   }
 }
-customElements.define("review-form", ReviewFormElement);
+customElements.define('review-form', ReviewFormElement)
